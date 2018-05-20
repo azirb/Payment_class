@@ -1,43 +1,52 @@
 #include "Payment.h"
 #include <iostream>
 using namespace std;
+
+const double Income_tax = 13; 
 int main()
 {
-	Payment Guy;
-	Guy.Language();
+	setlocale(LC_ALL, "Russian"); 
 
-	string Name_of_work;
-	string Surname_of_work;
-	string Middle_name_of_work;
-	int Year = 2008;
-	short int working_days = 20;
-	long int Work_days = 21;
-	int current_year=2018;
-	double Payment=30000;
-	double nadbavka;
-	float income=15;
-   
-	cout << "Введите процент надбавки ";
-	cin >> nadbavka;
+	int count_workers; 
+	cout << "Введите количество работников " << endl; 
+	cin >> count_workers; 
+
+	Payment *workers = new Payment[count_workers]; 
+
+	string Name, MIddle_name, Surname; 
+	double Payment, Extra_charge; 
+	int Year,work_days,working_days; 
 	
-	Guy.set_procent_of_extra_charge(nadbavka);
+	// fill all info about workers 
+	for (int i = 0; i < count_workers; i++)
+	{
+		cout << "Введите Имя Фамиллию Отчество работника "; 
+		cin >> Name; 
+		cin >> Surname;
+		cin >> MIddle_name;  
+		cout << "Введите год начала работы "; 
+		cin >> Year; 
+		cout << "Введите количество рабочих и отработанных дней ";
+		cin >> work_days;
+		cin >> working_days; 
+		cout << "Введите оклад и процент надбавки "; 
+		cin >> Payment; 
+		cin >> Extra_charge; 
+		workers[i].set_NSM(Name, Surname, MIddle_name);
+		workers[i].set_Year_of_start_working(Year); 
+		workers[i].set_count_Work_days(work_days);
+		workers[i].set_count_Working_days(working_days); 
+		workers[i].set_payment_of_man(Payment); 
+		workers[i].set_procent_of_extra_charge(Extra_charge); 
+		workers[i].set_Income_tax(Income_tax); 
+		workers[i].count_work_experience();
+		workers[i].count_accured_Amount(); 
+		workers[i].count_retained_Amound(); 
+		workers[i].count_amount_on_hands(); 
+	}
 
-	Guy = "1) Виталий"; 
-	Guy = "2) Шушкевич"; 
-	Guy = "3) Алексеевич"; 
-	Guy = Year; 
-	Guy = working_days; 
-	Guy = Work_days; 
-	Guy = Payment; 
-	Guy = income; 
-
-	Guy.count_work_experience(current_year);
-	Guy.count_accured_Amount();
-	Guy.count_retained_Amound();
-	Guy.count_amount_on_hands();
-
-	Guy.type_all(); 
-
+	cout << endl; 
+	workers[1].type_all();
 	system("pause"); 
 	return 0;
 }

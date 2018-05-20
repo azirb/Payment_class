@@ -23,6 +23,7 @@ public:
 	void set_Name(string); // установка имени
 	void set_Surname(string); // установка фамилии
 	void set_Middle_name(string); // установка отчества 
+	void set_NSM(string, string, string); 
 	string getName();// получение имени 
 	string getSurname(); // получение фамилии
 	string getMiddle_name(); // получение Отчества
@@ -48,7 +49,7 @@ public:
 
 	void type_all();
 
-	int count_work_experience(int); // подсчет стажа работы 
+	int count_work_experience(); // подсчет стажа работы 
 	double count_accured_Amount(); // вычисление начисленной суммы 
 	double count_amount_on_hands(); //вычисление суммы выдаваемой на руки 
 	double count_retained_Amound(); // вычисление удержанной суммы

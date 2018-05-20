@@ -1,12 +1,21 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "Payment.h"
 #include <clocale>
 #include <iostream>
 #include <cmath>
+#include <time.h>
 using namespace std;
 
 void Payment ::Language() // язык системы 
 {
 	setlocale(LC_ALL, "Russian");
+}
+
+void Payment::set_NSM(string _Name, string _Surname, string _Middle)
+{
+	Name = _Name; 
+	Surname = _Surname; 
+	Middle_Name = _Middle; 
 }
 
 void Payment ::set_Name(string Name_of_work)
@@ -109,7 +118,7 @@ double Payment ::get_amount_on_hands()
 }
 
 
-void Payment::type_all()
+void Payment :: type_all()
 {
 	int exp; 
 	double acc_am, ret_am, am_hand;
@@ -118,9 +127,9 @@ void Payment::type_all()
 	ret_am = get_retained_amount(); 
 	am_hand = get_amount_on_hands();
 
-	cout << "" << Name << endl;
-	cout << "" << Surname << endl;
-	cout << "" << Middle_Name << endl;
+	cout << "Имя " << Name << endl;
+	cout << "Фамилия " << Surname << endl;
+	cout << "Отчество " << Middle_Name << endl;
 	cout << "Payment " << Payment_of_man << endl;
 	cout << "Year " << Year_of_start_working << endl;
 	cout << "Income " << Income_tax << endl;
@@ -132,12 +141,17 @@ void Payment::type_all()
 	cout << "Выданная на руки сумма " << am_hand << endl;
 }
 
-int Payment ::count_work_experience(int current_year) // подсчет стажа работы 
+int Payment ::count_work_experience() // подсчет стажа работы  testing
 {
-	int c;
-	c = get_Year_of_start_working();
-	work_experience = current_year - c;
-	return work_experience;
+		int year;
+		int start; 
+		struct tm *tim;
+		time_t tt = time(NULL);
+		tim = localtime(&tt);
+		year = tim->tm_year + 1900;
+		start = get_Year_of_start_working(); 
+		work_experience = year - start; 
+		return year - start; 
 }
 
 double Payment::count_accured_Amount() // вычисление начисленной суммы 
